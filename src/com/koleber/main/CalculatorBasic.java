@@ -3,10 +3,10 @@ package com.koleber.main;
 public class CalculatorBasic {
 
     public static void main(String[] args) {
-        String str = "( 1 + (( 2 + 3) * (4 * 5)))";
+        String str = "(1 + (( 2 + 3) * (4 * 5)))";
         
-        ResizingArrayStack<String> ops = new ResizingArrayStack<>();
-        ResizingArrayStack<Double> val = new ResizingArrayStack<>();
+        Stack<String> ops = new Stack<>();
+        Stack<Double> val = new Stack<>();
         
         for (int i = 0; i < str.length(); i++) {
             String s = String.valueOf(str.charAt(i));
