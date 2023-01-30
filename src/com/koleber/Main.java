@@ -1,6 +1,5 @@
 package com.koleber;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -10,23 +9,24 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("/Users/andrej/Desktop/INPUT.TXT"));
-        int n = scanner.nextInt();
-        int[] a = new int[n];
+        String string = "10"; //scanner.nextLine();
         
-        for (int i = 0; i < n; i++) {
-            a[i] = scanner.nextInt();
-        }
-        
-        for (int i = 0; i < n / 2; i++) {
-            int tmp = a[i];
-            a[i] = a[n - 1 - i];
-            a[n - 1 - i] = tmp;
+        int max = 0;
+        int count = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == '0') {
+                count++;
+            }
+            if (string.charAt(i) == '1' || i == string.length() - 1) {
+                if (count > max) {
+                    max = count;
+                }
+                count = 0;
+            }
         }
         
         PrintWriter printWriter = new PrintWriter("/Users/andrej/Desktop/OUTPUT.TXT");
-        for (int i = 0; i < n; i++) {
-            printWriter.print(a[i] + " ");
-        }
+        printWriter.println(max);
         printWriter.close();
     }
 }
