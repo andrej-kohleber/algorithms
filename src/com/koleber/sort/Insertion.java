@@ -3,19 +3,19 @@ package com.koleber.sort;
 import java.util.Comparator;
 
 public class Insertion {
-    
+
     public static void sort(Comparable[] a) {
         int length = a.length;
         for (int i = 1; i < length; i++)
             for (int j = i; j > 0 && less(a[j], a[j - 1]); j--)
-                exchange(a, j, j -1);
+                exchange(a, j, j - 1);
     }
 
     public static void sort(Object[] a, Comparator c) {
         int length = a.length;
         for (int i = 1; i < length; i++)
             for (int j = i; j > 0 && less(c, a[j], a[j - 1]); j--)
-                exchange(a, j, j -1);
+                exchange(a, j, j - 1);
     }
 
     private static boolean less(Comparator c, Object v, Object w) {

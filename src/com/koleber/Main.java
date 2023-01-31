@@ -1,6 +1,8 @@
 package com.koleber;
 
-import java.io.File;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -8,25 +10,24 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("/Users/andrej/Desktop/INPUT.TXT"));
-        String string = "10"; //scanner.nextLine();
+        Scanner scanner = new Scanner(new BufferedInputStream(new FileInputStream("/Users/andrej/Desktop/INPUT.TXT"), 128 * 1024 * 1024));
+        PrintWriter printWriter = new PrintWriter("/Users/andrej/Desktop/OUTPUT.TXT");
         
-        int max = 0;
-        int count = 0;
-        for (int i = 0; i < string.length(); i++) {
-            if (string.charAt(i) == '0') {
-                count++;
-            }
-            if (string.charAt(i) == '1' || i == string.length() - 1) {
-                if (count > max) {
-                    max = count;
-                }
-                count = 0;
-            }
+        int size = scanner.nextInt();
+        int[] arr = new int[201];
+        for (int i = 0; i < size; i++) {
+            arr[scanner.nextInt() + 100]++;
         }
         
-        PrintWriter printWriter = new PrintWriter("/Users/andrej/Desktop/OUTPUT.TXT");
-        printWriter.println(max);
+        for (int i = -100; i < 101; i++) {
+            int cnt = arr[i + 100];
+
+            for (int j = 0; j < cnt; j++) {
+                printWriter.print(i + " ");
+                System.out.print(i + " ");
+            }
+        }
+       
         printWriter.close();
     }
 }
