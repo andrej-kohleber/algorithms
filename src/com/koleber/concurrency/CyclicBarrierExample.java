@@ -1,4 +1,4 @@
-package com.koleber;
+package com.koleber.concurrency;
 
 
 import java.util.ArrayList;
@@ -8,7 +8,12 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Main {
+
+/**
+ * CyclicBarrier is a universal synchronization aid which allows a set of threads to wait for each other to reach a 
+ * common barrier point
+ */
+public class CyclicBarrierExample {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         Runnable barrierAction = () -> System.out.println("BarrierAction");
@@ -20,16 +25,16 @@ public class Main {
             threads.add(thread);
             thread.start();
         }
-        
-        
+
+
         for (Thread thread : threads) {
             thread.join();
         }
-     
+
     }
-    
+
     static class Worker implements Runnable {
-        
+
         private CyclicBarrier barrier;
         private int i;
 
