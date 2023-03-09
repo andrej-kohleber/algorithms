@@ -1,53 +1,17 @@
 package com.koleber;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ThreadLocalRandom;
+import java.io.File;
 
 public class Main {
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        Runnable barrierAction = () -> System.out.println("BarrierAction");
-        CyclicBarrier barrier = new CyclicBarrier(2, barrierAction);
+    public static void main(String[] args) {
+        
+        
+        
 
-        List<Thread> threads = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            Thread thread = new Thread(new Worker(barrier, i));
-            threads.add(thread);
-            thread.start();
-        }
-        
-        
-        for (Thread thread : threads) {
-            thread.join();
-        }
-     
-    }
+
+
+    }    
     
-    static class Worker implements Runnable {
-        
-        private CyclicBarrier barrier;
-        private int i;
-
-        public Worker(CyclicBarrier barrier, int i) {
-            this.barrier = barrier;
-            this.i = i;
-        }
-
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(ThreadLocalRandom.current().nextInt(1000, 5000));
-                System.out.println("Work before barrier");
-                barrier.await();
-                System.out.println("Work after barrier");
-            } catch (InterruptedException ignore) {
-            } catch (BrokenBarrierException ignore) {
-            }
-        }
-    }
 }
