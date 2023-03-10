@@ -33,7 +33,7 @@ public class Queue<T> implements Iterable<T> {
     public T dequeue() {
         T item = first.item;
         first = first.next;
-        if (isEmpty()) first = last;
+        if (isEmpty()) last = null;
         size--;
         return item;
     }
