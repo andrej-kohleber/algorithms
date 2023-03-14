@@ -52,6 +52,6 @@ public class BreadthFirstPaths {
         BreadthFirstPaths paths = new BreadthFirstPaths(G, 0);
         boolean b = paths.hasPathTo(5);
         Iterable<Integer> integers = paths.pathTo(3);
-        int c = 0;
+       
     }
 }
