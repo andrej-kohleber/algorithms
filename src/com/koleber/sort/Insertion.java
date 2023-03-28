@@ -61,4 +61,10 @@ public class Insertion {
         show(arr);
         assert isSorted(arr);
     }
+
+    public static void sort(String[] a, int lo, int hi, int d) {
+        for (int i = lo; i < hi; i++)
+            for (int j = i; j > lo && less(a[j], a[j - 1]); j--)
+                exchange(a, j, j - 1);
+    }
 }
